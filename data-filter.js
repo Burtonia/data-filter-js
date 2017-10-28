@@ -1,7 +1,10 @@
-// Data Filter JS v1.0.0 (2017-10-28)
+// Data Filter JS v1.0.1 (2017-10-28)
 // Simple and Flexible Data Filter for Click and Keystroke Events
 // The MIT License (MIT)
 // Copyright (c) 2017 Alexander Burton
+// Last Change: [2017-10-28]
+// Uppercase method added to node and search_string to eliminate case sensitivity on keystroke. 
+// Case sensitivity will be removed from button search next.
 
 function jQueryDataFilter(config){
   // define variables
@@ -31,10 +34,10 @@ function jQueryDataFilter(config){
   $(filterButtonGroup+' > input[type="text"]').on('keypress keydown keyup', function(e, fnd) {
     // Loop through Filter Nodes on Keystroke
     $.each($(filterNode), function(i, v) {
-      var node = v.getAttribute("data-filter");
-      var search_string = $(filterButtonGroup+' > '+'input[type="text"]').val();
+      var node = v.getAttribute("data-filter").toString().toUpperCase();
+      var search_string = $(filterButtonGroup+' > '+'input[type="text"]').val().toUpperCase();
       //console.log(node.getAttribute('data-filter'));
-      if(node.toString().includes(search_string) == false) {
+      if(node.includes(search_string) == false) {
         v.classList.add('filter-me');
       } else {v.classList.remove('filter-me');}
     }); // end each
