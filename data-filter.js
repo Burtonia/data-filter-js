@@ -7,7 +7,7 @@
 // Case sensitivity will be removed from button search next.
 // Masonry Optional with a simple boolean in the config object.
 
-function jQueryDataFilter(config){
+function DataFilterJS(config){
   // define variables
   var filterGroup = config.filterGroup;
   var filterNode = config.filterNode;
@@ -56,7 +56,7 @@ function jQueryDataFilter(config){
   }); // end keypress listener
 }
 
-var example = new jQueryDataFilter({
+var example = new DataFilterJS({
   filterGroup: '.grid-selector',
   filterNode: '.node-selector',
   filterButtonGroup: '.filter-button-group',
