@@ -1,10 +1,11 @@
-// Data Filter JS v1.0.1 (2017-10-28)
+// Data Filter JS v1.0.2 (2017-11-07)
 // Simple and Flexible Data Filter for Click and Keystroke Events
 // The MIT License (MIT)
 // Copyright (c) 2017 Alexander Burton
-// Last Change: [2017-10-28]
-// Uppercase method added to node and search_string to eliminate case sensitivity on keystroke. 
+// Last Change: [2017-11-07]
+// Uppercase method added to node and search_string to eliminate case sensitivity on keystroke.
 // Case sensitivity will be removed from button search next.
+// Masonry Optional with a simple boolean in the config object.
 
 function jQueryDataFilter(config){
   // define variables
@@ -15,6 +16,11 @@ function jQueryDataFilter(config){
   var filter_group = $(filterGroup);
   var filter_node = $(filterGroup+' > '+filterNode);
   var search_val = $(filterButtonGroup+'> '+'input[type="text"]').value;
+
+  // Init Masonry if Input is Empty
+  if(config.masonry == true && typeof search_value == "undefined") {
+    $(filterGroup).masonry({itemSelector: filterNode, columnWidth: config.columnWidth});
+  }
 
   // (Button) Data Filter Function
   $(filterButtonGroup+' > button').on('click', function(e) {
@@ -39,7 +45,22 @@ function jQueryDataFilter(config){
       //console.log(node.getAttribute('data-filter'));
       if(node.includes(search_string) == false) {
         v.classList.add('filter-me');
-      } else {v.classList.remove('filter-me');}
+      } else {
+        v.classList.remove('filter-me');
+      }
     }); // end each
-  }); // end keypress
+    // Masonry JS Scripts
+    if(config.masonry == true) {
+      $(filterGroup).masonry({itemSelector: filterNode+':not(.filter-me)', columnWidth: config.columnWidth});
+    }
+  }); // end keypress listener
 }
+
+var example = new jQueryDataFilter({
+  filterGroup: '.grid-selector',
+  filterNode: '.node-selector',
+  filterButtonGroup: '.filter-button-group',
+  transitionSpeed: '0.5s',
+  masonry: true,
+  columnWidth: 150
+});
