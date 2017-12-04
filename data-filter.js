@@ -44,12 +44,8 @@ function DataFilterJS(config){
     $.each(filter_node, function(i, v) {
       var node = v.getAttribute("data-filter").toString().toUpperCase();
       var search_string = $(filterButtonGroup+' > '+'input[type="text"]').val().toUpperCase();
-      //console.log(node.getAttribute('data-filter'));
-      if(node.includes(search_string) == false) {
-        v.classList.add('filter-me');
-      } else {
-        v.classList.remove('filter-me');
-      }
+      // Ternary Class Filter Manager
+      node.includes(search_string) == false ? v.classList.add('filter-me') : v.classList.remove('filter-me');
     }); // end each
     // Masonry JS Scripts
     initMasonry();
