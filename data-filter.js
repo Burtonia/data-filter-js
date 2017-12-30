@@ -1,11 +1,9 @@
-// Data Filter JS v1.0.3 (2017-12-04)
+// Data Filter JS v1.0.4 (2017-12-04)
 // Simple and Flexible Data Filter for Click and Keystroke Events
 // The MIT License (MIT)
 // Copyright (c) 2017 Alexander Burton
-// Last Change: [2017-12-04]
-// Uppercase method added to node and search_string to eliminate case sensitivity on keystroke.
-// Case sensitivity will be removed from button search next.
-// Masonry Optional with a simple boolean in the config object.
+// Last Change: [2017-12-29]
+// Changed "> button" on Line 24 to " .filter-button"
 
 function DataFilterJS(config){
   // define variables
@@ -23,7 +21,7 @@ function DataFilterJS(config){
   }
 
   // (Button) Data Filter Function
-  $(filterButtonGroup+' > button').on('click', function(e) {
+  $(filterButtonGroup+' .filter-button').on('click', function(e) {
     $(filterNode+'.filter-me').css({"transition":"all "+transitionSpeed+" ease-in-out"})
     var eventFilter = e.currentTarget.attributes[1].nodeValue;
      // Loop through Filter Nodes on Button Click
